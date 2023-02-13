@@ -24,49 +24,6 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    groups: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Group",
-      },
-    ],
-
-    //Per StackOverflow: Before you can execute geospatial queries, you need to create a geospatial index:
-    // --> db.locationcol.createIndex( { loc : "2dsphere" } )
-    // Also, you need to store your locations as valid GeoJSON objects so MongoDB can parse them properly:
-    // --> loc : { type: "Point", coordinates: [ -76.703347, 30.710459 ] },
-
-    //Reference:  https://www.mongodb.com/docs/manual/reference/geojson/
-
-    // location: {
-    //   type: {
-    //     type: String,
-    //     enum: ["Point"], // 'location.type' must be 'Point'
-    //     required: true,
-    //   },
-    //   coordinates: {
-    //     type: [Number],
-    //     required: true,
-    //   },
-    // },
-
-    locations: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Location"
-      }
-    ],
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
   },
   {
     toJSON: {
